@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Test from "./test";
 
-function App() {
+const App = () => {
+  const [first, setfirst] = useState("dw");
+  // const data = axios.get(`https://api.pexels.com/videos/popular?per_page=1`, {
+  //   header: {
+  //     Authorization: "Ls6M4146hi3Q2QK6tJItZcluKsKNs0R4K7NJTnbnmwSK9W2nziZrlFrE",
+  //   },
+  // });
+  // console.log("data", data);
+
+  // useEffect(() => {
+  //   fetch("https://api.pexels.com/videos/popular?per_page=1", {
+  //     method: "get",
+  //     headers: new Headers({
+  //       Authorization:
+  //         "Ls6M4146hi3Q2QK6tJItZcluKsKNs0R4K7NJTnbnmwSK9W2nziZrlFrE",
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => setfirst(res));
+  // }, [first]);
+
+  const [videos, setVideos] = useState([]);
+  // console.log("videos", videos);
+
+  useEffect(() => {
+    const fetchPopularVideos = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.pexels.com/videos/popular?per_page=100`,
+          {
+            headers: {
+              Authorization:
+                "Ls6M4146hi3Q2QK6tJItZcluKsKNs0R4K7NJTnbnmwSK9W2nziZrlFrE",
+            },
+          }
+        );
+        setVideos(response.data.videos);
+      } catch (error) {
+        console.error("Error fetching popular videos:", error);
+      }
+    };
+
+    fetchPopularVideos();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* {videos.video_files?.map((data, index) => {
+        return (
+          <div key={index}>
+            <video width="320" height="240" controls autoPlay>
+              <source src={data.link} type="video/mp4" />
+            </video>
+          </div>
+        );
+      })} */}
+      <Test />
+    </>
   );
-}
-
+};
 export default App;

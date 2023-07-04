@@ -1,0 +1,54 @@
+.app_videos {
+    position: relative;
+    height: 100vh;
+    /* background-color: black; */
+    overflow: hidden;
+    
+  }
+  
+  .scroll_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    width: 420px;
+    min-width: 320px;
+    height: 100vh;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  }
+  
+  .scroll_container::-webkit-scrollbar {
+    width: 0; /* Hide scrollbar for Chrome, Safari, and Opera */
+  }
+  
+  
+  .video_wrapper {
+    /* position: relative; */
+    scroll-snap-align: start;
+  }
+  
+  .video {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+  }
+
+  /* footer start*/
+  /* .footer{
+     position: sticky
+  }
+  .userProfile_icon{
+
+  } */
+  /* footer end*/
+
+  /*other like Like, share section start*/
+  .outer_section{
+    display: flex;
+    
+  }
+  /*other like Like, share section End*/
